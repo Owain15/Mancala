@@ -8,47 +8,86 @@ namespace Mancala.UI
 {
 	internal static class ConsoleApp
 	{
+		private static string blankPot = "         ";
 		public static void PrintTable(Mancala.Code.Table gameState)
 		{
+			Console.ForegroundColor = ConsoleColor.Gray;
 
 			int[] p1Pots = gameState.GetP1Pots();
 			int[] p2Pots = gameState.GetP2Pots();
+
+			int p1Home = gameState.GetP1Home();
+			int p2Home = gameState.GetP2Home();
+
 			
-			string p1 = "  ";
-			string home = "  ";
-			string p2 = "  ";
+			
+			string p1 = blankPot;
+			string home = "";
+			string p2 = blankPot;
+
+			
 
 			foreach(int pot in p1Pots)
-			{
-				if(pot < 10)
-				{
-					p1 += $"[ {pot.ToString()} ]  ";
-				}
-				else { p1 += $"[{pot.ToString()} ]  "; }
+			{ p1 += FormatPot(pot); }
 
-			}
-
+			home += FormatPot(p1Home);
 			
-			home += $"[ X ]  ";
-			for(int i = 0; i < p1Pots.Length -2; i++)
-			{ home += "       "; }
-			home += $"[ X ]  ";
+			for(int i = 0; i < p1Pots.Length; i++)
+			{ home += blankPot; }
+			
+			home += FormatPot(p2Home);
 
 			foreach (int pot in p2Pots)
-			{
-				if (pot < 10)
-				{
-					p2 += $"[ {pot.ToString()} ]  ";
-				}
-				else { p2 += $"[{pot.ToString()} ]  "; }
-
-			}
+			{ p2 += FormatPot(pot); }
 
 			Console.WriteLine("Mancala\n\r\n\r");
 			Console.WriteLine(p1); 
 			Console.WriteLine(home);
 			Console.WriteLine(p2);
 
+			Console.ResetColor();
+
 		}
+
+		internal static void HighlghtPlayer(Mancala.Code.Table gameState)
+		{
+			Console.ForegroundColor = ConsoleColor.Cyan;
+
+			if(gameState.GetCurrentPlayer() == 1)
+			{
+				int index = gameState.GetP1Index();
+
+				Console.SetCursorPosition((index+1) * blankPot.Length+2,3);
+				Console.Write("<");
+				Console.SetCursorPosition((index + 1) * blankPot.Length + (blankPot.Length - 3), 3);
+				Console.Write("<");
+
+			}
+			else if (gameState.GetCurrentPlayer() == 2)
+			{
+				int index = gameState.GetP2Index();
+
+				Console.SetCursorPosition((index + 1) * blankPot.Length + 2, 5);
+				Console.Write(">");
+				Console.SetCursorPosition((index + 1) * blankPot.Length + (blankPot.Length - 3), 5);
+				Console.Write(">");
+
+			}
+
+			Console.ResetColor();
+		
+		}
+
+		private static string FormatPot(int pot)
+		{
+			if(pot <10)
+			{ return $"  [ {pot} ]  "; }
+			else if (pot > 9 && pot < 100)
+			{ return $"  [{pot} ]  "; }
+			else
+			{ return $"  {pot}  "; }
+
+		}
+
 	}
 }

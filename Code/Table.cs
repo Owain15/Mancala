@@ -11,43 +11,130 @@ namespace Mancala.Code
 	internal class Table
 	{
 
-		(int[] p1 , int[] p2)pots;
-		
-		(int p1, int p2) homes;
+		(Player P1, Player P2) players;
 
-		//int p1Home;
-		//int p2Home;
+		int currentPlayer;
 
-		public Table(int potCount)
+		int potCount;
+
+		public Table(int PotCount)
 		{
-			pots.p1 = new int[potCount];
-			pots.p2 = new int[potCount];
+			potCount = PotCount;
 
-			homes.p1 = 0;
-			homes.p2 = 0;
+			players = (new Player(potCount), new Player(potCount));
 
-			//p1Home = 0;
-			//p2Home = 0;
+			currentPlayer = 1;
 		}
 
+
+		public int GetCurrentPlayer()
+		{ return currentPlayer; }
+
 		public int[] GetP1Pots()
-		{ return pots.p1; }
+		{ return players.P1.GetPots(); }
 
-		public int[]GetP2Pots()
-		{ return pots.p2; }
+		public int[] GetP2Pots()
+		{ return players.P2.GetPots(); }
 
-		public (int[]p1 , int[]p2) GetPots()
-		{ return pots; }
+		public (int[] P1, int[] P2) GetPots()
+		{ return (players.P1.GetPots(), players.P2.GetPots()); }
+
+
 
 		public int GetP1Home()
-		{ return homes.p1; }
+		{ return players.P1.GetHome(); }
 
 		public int GetP2Home()
-		{ return homes.p2; }
+		{ return players.P2.GetHome(); }
 
-		public (int P1, int P2) GetHomes()
-		{ return homes; }
+		public (int P1 , int P2) GetHomes()
+		{ return (players.P1.GetHome(), players.P2.GetHome()); }
 
 
+
+		public int GetP1Index()
+		{ return players.P1.GetIndex(); }
+
+		public int GetP2Index()
+		{ return players.P2.GetIndex(); }
+
+		public (int P1, int P2) GetIndexs()
+		{ return (players.P1.GetIndex(), players.P2.GetIndex()); }
+
+		public void UpdateGameState(Mancala.UI.Input.Command input)
+		{
+			switch(input)
+			{
+				case UI.Input.Command.left:
+					{ UpdatePlayerIndex(input); break; }
+				case UI.Input.Command.right:
+					{ UpdatePlayerIndex(input); break; }
+				case UI.Input.Command.enter:
+					{ RunCommand(); break; }
+				case UI.Input.Command.escape:
+					{ Environment.Exit(0); break; }
+			}
+
+		}
+
+		private void UpdatePlayerIndex(Mancala.UI.Input.Command input)
+		{
+			if (currentPlayer == 1)
+			{ players.P1.UpdateIndex(input); }
+			if (currentPlayer == 2)
+			{ players.P2.UpdateIndex(input); }
+		}
+
+		private void RunCommand()
+		{
+			int moveValue = 0;
+			int index = -1;
+			int cachedPlayer = currentPlayer;
+
+			if(currentPlayer == 1)
+			{ 
+				moveValue = players.P1.GetandClearCurrentPot();
+				index = players.P1.GetIndex() + 1;
+			}
+			if (currentPlayer == 2)
+			{
+				moveValue = players.P2.GetandClearCurrentPot();
+				index = players.P2.GetIndex() + 1;
+			}
+
+
+			while (moveValue > 0)
+			{
+				if(currentPlayer == 1)
+				{
+					moveValue = players.P1.UpdatePotValues(index , moveValue); 
+				}
+				if(currentPlayer == 2)
+				{
+					moveValue = players.P2.UpdatePotValues(index, moveValue);
+				}
+
+				UpdateCurrentPlayer();
+				index = 0;
+				//index = potCount - 1;
+
+			}
+
+			currentPlayer = cachedPlayer;
+			UpdateCurrentPlayer();
+
+		}
+
+
+		private void UpdateCurrentPlayer()
+		{ 
+			if(currentPlayer == 1)
+			{ currentPlayer = 2; }
+			else if(currentPlayer == 2)
+			{ currentPlayer = 1; }
+			else
+			{ throw new Exception("Failed To Change Current Player!"); }
+		
+		}
 	}
 }

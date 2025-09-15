@@ -1,6 +1,8 @@
 ﻿using Mancala;
 using Mancala.Code;
 
+Console.CursorVisible = false;
+
 Table table = new Table(8);
 
 bool isRunning = true;
@@ -10,9 +12,12 @@ while(isRunning)
 	//render display
 	Console.Clear();
 	Mancala.UI.ConsoleApp.PrintTable(table);
+	Mancala.UI.ConsoleApp.HighlghtPlayer(table);
 
 	//get input
+	//Mancala.UI.Input.GetCommand();
 
 	//update game state
+	table.UpdateGameState(Mancala.UI.Input.GetCommand());
 
 }
