@@ -82,9 +82,9 @@ namespace Mancala.Code
 			return result;
 		}
 
-		public int UpdatePotValues(int index, int moveValue)
+		public int UpdatePotValues(int index, int moveValue, bool isCurrentPlayersTurn)
 		{
-			for(int i = index; i < pots.Length - 1; i ++ )
+			for(int i = index; i < pots.Length; i ++ )
 			{
 				pots[i]++;
 				moveValue--;
@@ -92,7 +92,7 @@ namespace Mancala.Code
 				{ break; }
 			}
 
-			if(moveValue > 0)
+			if(moveValue > 0 && isCurrentPlayersTurn)
 			{
 				home++;
 				moveValue--;
@@ -100,5 +100,7 @@ namespace Mancala.Code
 
 			return moveValue;
 		}
+
+
 	}
 }

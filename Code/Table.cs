@@ -39,6 +39,21 @@ namespace Mancala.Code
 		public (int[] P1, int[] P2) GetPots()
 		{ return (players.P1.GetPots(), players.P2.GetPots()); }
 
+		public int[] GetPlayerPots(int player)
+		{
+			if (player < 1 || player > 2)
+			{
+				throw new Exception("Invalid player input!");
+			}
+
+			if (player == 1)
+			{ return GetP1Pots(); }
+			else if (player == 2)
+			{ return GetP2Pots(); }
+			else
+			{ throw new Exception("Player Pot data not found!"); }
+		}
+
 
 
 		public int GetP1Home()
@@ -50,7 +65,37 @@ namespace Mancala.Code
 		public (int P1 , int P2) GetHomes()
 		{ return (players.P1.GetHome(), players.P2.GetHome()); }
 
+		public int GetPlayerHome(int player)
+		{
+			if (player < 1 || player > 2)
+			{
+				throw new Exception("Invalid player input!");
+			}
 
+			if (player == 1)
+			{ return GetP1Home(); }
+			else if (player == 2)
+			{ return GetP2Home(); }
+			else
+			{ throw new Exception("Player Home data not found!"); }
+		}
+
+
+		public int GetPlayerIndex(int player)
+		{
+			if(player < 1 || player > 2)
+			{
+				throw new Exception("Invalid player input!");
+			}
+
+			if(player == 1)
+			{ return GetP1Index(); }
+			else if(player == 2)
+			{ return GetP2Index(); }
+			else
+			{ throw new Exception("Player index data not found!"); }
+
+		}
 
 		public int GetP1Index()
 		{ return players.P1.GetIndex(); }
@@ -102,21 +147,21 @@ namespace Mancala.Code
 				index = players.P2.GetIndex() + 1;
 			}
 
-
 			while (moveValue > 0)
 			{
-				if(currentPlayer == 1)
+				if (currentPlayer == 1)
 				{
-					moveValue = players.P1.UpdatePotValues(index , moveValue); 
+					moveValue = players.P1.UpdatePotValues(index, moveValue,(currentPlayer == cachedPlayer)); 
 				}
-				if(currentPlayer == 2)
+				if (currentPlayer == 2)
 				{
-					moveValue = players.P2.UpdatePotValues(index, moveValue);
+					moveValue = players.P2.UpdatePotValues(index, moveValue, (currentPlayer == cachedPlayer)); 
 				}
 
 				UpdateCurrentPlayer();
-				index = 0;
-				//index = potCount - 1;
+				
+				//set new index
+				index = 0; 
 
 			}
 

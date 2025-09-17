@@ -11,8 +11,9 @@ while(isRunning)
 {
 	//render display
 	Console.Clear();
-	Mancala.UI.ConsoleApp.PrintTable(table);
-	Mancala.UI.ConsoleApp.HighlghtPlayer(table);
+	Mancala.UI.ConsoleApp.DevReadout(table);
+	//Mancala.UI.ConsoleApp.PrintTable(table);
+	//Mancala.UI.ConsoleApp.HighlghtPlayer(table);
 
 	//get input
 	//Mancala.UI.Input.GetCommand();
