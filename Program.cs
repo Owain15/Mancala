@@ -9,6 +9,9 @@ bool isRunning = true;
 
 while(isRunning)
 {
+	// Turn set up
+	table.SetPlayerIndex();
+
 	//render display
 	Console.Clear();
 	Mancala.UI.ConsoleApp.DevReadout(table);
@@ -20,5 +23,9 @@ while(isRunning)
 
 	//update game state
 	table.UpdateGameState(Mancala.UI.Input.GetCommand());
+
+	//evaluate gamestate
+
+	isRunning = table.CheckForEndOfGame();
 
 }

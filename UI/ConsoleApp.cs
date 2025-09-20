@@ -15,7 +15,7 @@ namespace Mancala.UI
 		{
 
 			int playerCount = 2;
-			int currentPlayerIndex = gameState.GetCurrentPlayer();
+			int currentPlayer = gameState.GetCurrentPlayer();
 
 			Console.WriteLine("Mancala\n\r\n\r");
 
@@ -26,13 +26,13 @@ namespace Mancala.UI
 				Console.WriteLine(".....................................");
 				Console.WriteLine("pots : ");
 				string potReadout="";
-				foreach(int pot in gameState.GetPlayerPots(i+1))
+				foreach(int pot in gameState.GetPlayerPots(i))
 				{ potReadout += FormatPot(pot); }
 				Console.WriteLine(potReadout);
 				Console.WriteLine("home : ");
-				Console.WriteLine(FormatPot(gameState.GetPlayerHome(i+1)));
-				Console.WriteLine("current turn : " + ((i + 1) == currentPlayerIndex).ToString() + "\n\r");
-				Console.WriteLine("index : " + (gameState.GetPlayerIndex((i+1))).ToString() + "\n\r");
+				Console.WriteLine(FormatPot(gameState.GetPlayerHome(i)));
+				Console.WriteLine("current turn : " + (i == currentPlayer).ToString() + "\n\r");
+				Console.WriteLine("index : " + (gameState.GetPlayerIndex(i)).ToString());
 				Console.WriteLine(".....................................\n\r");
 			}
 
@@ -118,6 +118,7 @@ namespace Mancala.UI
 			{ return $"  {pot}  "; }
 
 		}
+
 
 	}
 }

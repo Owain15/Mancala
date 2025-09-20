@@ -41,6 +41,14 @@ namespace Mancala.Code
 		public int GetHome()
 		{ return home; }
 
+		public int GetPot(int index)
+		{	
+			if(index < 0 || index > pots.Length)
+			{ throw new Exception("Pot data not found. Invalid index!"); }
+			
+			return pots[index];
+		}
+
 		public int[] GetPots()
 		{ return pots; }
 
@@ -49,19 +57,40 @@ namespace Mancala.Code
 
 		public void UpdateIndex(Input.Command input)
 		{
-			switch(input)
+			// check input is valid
+			if( input != Input.Command.left && input != Input.Command.right )
+			{ throw new Exception("Invalid player input!"); }
+
+			//set increment value
+			int increment = -1;
+			if(input == Input.Command.right)
+			{ increment = 1; }
+
+			for(int i = 0; i < pots.Length; i++)
 			{
-				case Input.Command.left:
-					{ index--; break; }
-
-				case Input.Command.right:
-					{ index++; break; }
-
-				default: throw new Exception("Player Move Failed!");
+				index += increment;
+				ValidateIndex();
+				if (pots[index] != 0)
+				{ return; }
 			}
 
-			ValidateIndex();
+			throw new Exception("No valid move found!");
 			
+
+
+			//switch(input)
+			//{
+			//	case Input.Command.left:
+			//		{ index--; break; }
+
+			//	case Input.Command.right:
+			//		{ index++; break; }
+
+			//	default: throw new Exception("Player Move Failed!");
+			//}
+
+			//ValidateIndex();
+
 		}
 
 		private void ValidateIndex()
@@ -101,6 +130,9 @@ namespace Mancala.Code
 			return moveValue;
 		}
 
-
+		public bool CanMakeMove()
+		{
+			return !(pots.All(i => i == 0));
+		}
 	}
 }
