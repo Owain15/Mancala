@@ -14,7 +14,8 @@ while(isRunning)
 
 	//render display
 	Console.Clear();
-	Mancala.UI.ConsoleApp.DevReadout(table);
+	//Mancala.UI.ConsoleApp.DevReadout(table);
+	Mancala.UI.ConsoleApp.RenderGame(table);
 	//Mancala.UI.ConsoleApp.PrintTable(table);
 	//Mancala.UI.ConsoleApp.HighlghtPlayer(table);
 

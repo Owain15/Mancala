@@ -38,6 +38,9 @@ namespace Mancala.Code
 
 		}
 
+		public void AddToHome(int value)
+		{ home += value; }
+
 		public int GetHome()
 		{ return home; }
 
@@ -107,6 +110,14 @@ namespace Mancala.Code
 		{
 			int result = pots[index];
 			pots[index] = 0;
+
+			return result;
+		}
+
+		public int GetandClearPot(int  Index)
+		{
+			int result = pots[Index];
+			pots[Index] = 0;
 
 			return result;
 		}

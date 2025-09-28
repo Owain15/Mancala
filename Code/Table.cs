@@ -140,26 +140,31 @@ namespace Mancala.Code
 			int index = -1;
 			int cachedPlayer = currentPlayer;
 
-			if(currentPlayer == 0)
-			{ 
-				moveValue = players[0].GetandClearCurrentPot();
-				index = players[0].GetIndex() + 1;
-			}
-			if (currentPlayer == 1)
-			{
-				moveValue = players[1].GetandClearCurrentPot();
-				index = players[1].GetIndex() + 1;
-			}
+
+			if(currentPlayer != 0 && currentPlayer != 1)
+			{ throw new Exception("Run command. Invalid current player!"); }
+
+			moveValue = players[currentPlayer].GetandClearCurrentPot();
+			index = players[currentPlayer].GetIndex() + 1;
+
 
 			while (moveValue > 0)
 			{
-				if (currentPlayer == 0)
+				moveValue = players[currentPlayer].UpdatePotValues(index, moveValue, (currentPlayer == cachedPlayer));
+
+				// check if move ended on an empty pot.
+				if(moveValue == 0 && currentPlayer == cachedPlayer && players[currentPlayer].GetPot(index) == 1)
 				{
-					moveValue = players[0].UpdatePotValues(index, moveValue,(currentPlayer == cachedPlayer)); 
-				}
-				if (currentPlayer == 1)
-				{
-					moveValue = players[1].UpdatePotValues(index, moveValue, (currentPlayer == cachedPlayer)); 
+					//StealOppositePot(currentPlayer, index);
+					
+					int targetPlayer = currentPlayer + 1;
+					if(targetPlayer > players.Length-1)
+					{ targetPlayer = 0; }
+
+					int targetIndex = potCount - index;
+
+					players[currentPlayer].AddToHome(players[targetPlayer].GetandClearPot(targetIndex));
+
 				}
 
 				UpdateCurrentPlayer();

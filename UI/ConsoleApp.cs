@@ -38,6 +38,87 @@ namespace Mancala.UI
 
 		}
 
+		public static void RenderGame(Mancala.Code.Table gameState)
+		{
+			int potCount = gameState.GetP1Pots().Count();
+			int currentPlayer = gameState.GetCurrentPlayer();
+			int potIndex = 0;
+
+// Title
+
+			Console.WriteLine("Mancala\n\r\n\r");
+
+//Player Indecator
+
+			for(int i = 0; i < ((potCount/2)-2); i++)
+			{ Console.Write(blankPot); }
+			Console.Write("Player 1     ");
+			
+			if (currentPlayer == 0)
+			{ Console.Write("  < []   "); }
+			else if (currentPlayer == 1)
+			{ Console.Write("    [] > "); }
+			else
+			{ throw new Exception("Console UI. Player line. Invalid player index!"); }
+				
+			Console.Write("     Player 2");
+
+			Console.Write("\n\r\n\r");
+
+// Player 1 Pots
+			
+			int p1Index = gameState.GetP1Index();
+			
+			potIndex = 0;
+
+			foreach( var pot in gameState.GetP1Pots().Reverse())
+			{
+				//Console.Write("  ");
+				if(currentPlayer == 0 && p1Index == potIndex)
+				{ Console.Write(HighlightPot(pot,currentPlayer)); }
+				else
+				{ Console.Write(FormatPot(pot)); }
+				
+				potIndex++;
+			}
+
+			Console.Write("\n\r\n\r");
+
+// Move Indcator?
+
+// Home pots (Move Indecator?)
+
+			Console.Write(FormatPot(gameState.GetP1Home()));
+
+			for (int i = 0; i < (potCount - 2); i++)
+			{ Console.Write(blankPot); }
+
+			Console.Write(FormatPot(gameState.GetP2Home()));
+
+			Console.Write("\n\r\n\r");
+
+			// Move Indcator?
+
+			// Player 2 Pots
+
+			int p2Index = gameState.GetP2Index();
+
+			potIndex = 0;
+
+			foreach (var pot in gameState.GetP2Pots())
+			{
+				//Console.Write("  ");
+				if (currentPlayer == 1 && p2Index == potIndex)
+				{ Console.Write(HighlightPot(pot, currentPlayer)); }
+				else
+				{ Console.Write(FormatPot(pot)); }
+
+				potIndex++;
+			}
+
+			Console.Write("\n\r\n\r");
+
+		}
 
 		public static void PrintTable(Mancala.Code.Table gameState)
 		{
@@ -119,6 +200,25 @@ namespace Mancala.UI
 
 		}
 
+		private static String HighlightPot(int pot, int playerIndex)
+		{
+			String highlight;
+
+			if(playerIndex == 0)
+			{ highlight = "<"; }
+			else if(playerIndex == 1)
+			{ highlight = ">"; }
+			else
+			{ throw new Exception("ConsoleApp UI.HighlightPot.Invaild player index!"); }
+
+			if (pot < 10)
+			{ return $"  {highlight} {pot} {highlight}  "; }
+			else if (pot > 9 && pot < 100)
+			{ return $"  {highlight}{pot} {highlight}  "; }
+			else
+			{ return $"  {highlight}{pot}{highlight}  "; }
+
+		}
 
 	}
 }
