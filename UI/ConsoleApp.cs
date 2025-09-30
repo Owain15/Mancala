@@ -9,6 +9,8 @@ namespace Mancala.UI
 	internal static class ConsoleApp
 	{
 		private static string blankPot = "         ";
+		private static string markPot = "    .    ";
+		private static string markLastPot = "    X    ";
 
 
 		public static void DevReadout(Mancala.Code.Table gameState)
@@ -40,9 +42,16 @@ namespace Mancala.UI
 
 		public static void RenderGame(Mancala.Code.Table gameState)
 		{
+
+			int potIndex = 0;
 			int potCount = gameState.GetP1Pots().Count();
 			int currentPlayer = gameState.GetCurrentPlayer();
-			int potIndex = 0;
+
+			(int[] p1 , int[] p2) moveData;
+
+			if(gameState.GetDisplayMoveState())
+			{ moveData = gameState.GetMoveData(); }
+			else { moveData = (new int[0], new int[0]); }
 
 // Title
 
@@ -50,8 +59,11 @@ namespace Mancala.UI
 
 //Player Indecator
 
-			for(int i = 0; i < ((potCount/2)-2); i++)
+			Console.Write(blankPot);
+
+			for (int i = 0; i < ((potCount/2)-2); i++)
 			{ Console.Write(blankPot); }
+
 			Console.Write("Player 1     ");
 			
 			if (currentPlayer == 0)
@@ -69,9 +81,11 @@ namespace Mancala.UI
 			
 			int p1Index = gameState.GetP1Index();
 			
-			potIndex = 0;
+			potIndex = potCount-1;
 
-			foreach( var pot in gameState.GetP1Pots().Reverse())
+			Console.Write(blankPot);
+
+			foreach ( var pot in gameState.GetP1Pots().Reverse())
 			{
 				//Console.Write("  ");
 				if(currentPlayer == 0 && p1Index == potIndex)
@@ -79,31 +93,79 @@ namespace Mancala.UI
 				else
 				{ Console.Write(FormatPot(pot)); }
 				
-				potIndex++;
+				potIndex--;
 			}
 
-			Console.Write("\n\r\n\r");
+			Console.Write("\n\r");
 
 // Move Indcator?
 
+			if(gameState.GetDisplayMoveState())
+			{
+				Console.Write(blankPot);
+
+				for(int i = moveData.p1.Length-2; i > -1; i--)
+				{
+					PrintMoveIndicator(moveData.p1[i]);
+				}
+
+				Console.Write("\n\r");
+
+			}
+			else { Console.WriteLine(); }
+
 // Home pots (Move Indecator?)
+
 
 			Console.Write(FormatPot(gameState.GetP1Home()));
 
+			if(gameState.GetDisplayMoveState())
+			{
+				PrintMoveIndicator(moveData.p1[potCount]);
+			}
+			else 
+			{ Console.Write(blankPot); }
+
 			for (int i = 0; i < (potCount - 2); i++)
+			{
+				Console.Write(blankPot);
+			}
+
+			if (gameState.GetDisplayMoveState())
+			{
+				PrintMoveIndicator(moveData.p2[potCount]);
+			}
+			else
 			{ Console.Write(blankPot); }
 
 			Console.Write(FormatPot(gameState.GetP2Home()));
 
-			Console.Write("\n\r\n\r");
+			Console.Write("\n\r");
 
-			// Move Indcator?
+// Move Indicator?
 
-			// Player 2 Pots
+			if (gameState.GetDisplayMoveState())
+			{
+				Console.Write(blankPot);
+
+				for (int i = 0; i < moveData.p2.Length - 1; i++)
+				{
+					//Console.Write(markPot);
+					PrintMoveIndicator(moveData.p2[i]);
+				}
+
+				Console.Write("\n\r");
+
+			}
+			else { Console.WriteLine(); }
+
+// Player 2 Pots
 
 			int p2Index = gameState.GetP2Index();
 
 			potIndex = 0;
+
+			Console.Write(blankPot);
 
 			foreach (var pot in gameState.GetP2Pots())
 			{
@@ -117,6 +179,19 @@ namespace Mancala.UI
 			}
 
 			Console.Write("\n\r\n\r");
+
+		}
+
+		private static void PrintMoveIndicator(int indicator)
+		{
+			switch (indicator)
+			{
+				case -1: { Console.Write(markLastPot); break; }
+				case 0: { Console.Write(blankPot); break; }
+				default: { Console.Write(markPot); break; }
+			}
+
+			//Console.Write($"    {indicator}    ");
 
 		}
 

@@ -44,11 +44,19 @@ namespace Mancala.Code
 		public int GetHome()
 		{ return home; }
 
-		public int GetPot(int index)
+		public int GetPot(int Index)
 		{	
-			if(index < 0 || index > pots.Length)
+			if(Index < 0 || Index > pots.Length)
 			{ throw new Exception("Pot data not found. Invalid index!"); }
 			
+			return pots[Index];
+		}
+
+		public int GetPot()
+		{
+			if (index < 0 || index > pots.Length)
+			{ throw new Exception("Pot data not found. Invalid index!"); }
+
 			return pots[index];
 		}
 

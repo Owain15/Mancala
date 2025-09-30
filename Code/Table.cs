@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,8 @@ namespace Mancala.Code
 
 		int potCount;
 
+		bool displayMove;
+
 		public Table(int PotCount)
 		{
 			potCount = PotCount;
@@ -28,8 +31,14 @@ namespace Mancala.Code
 			//players = (new Player(potCount), new Player(potCount));
 
 			currentPlayer = 0;
+
+			displayMove = true;
+		
 		}
 
+
+		public bool GetDisplayMoveState()
+		{ return displayMove; }
 
 		public int GetCurrentPlayer()
 		{ return currentPlayer; }
@@ -58,6 +67,24 @@ namespace Mancala.Code
 			{ throw new Exception("Player Pot data not found!"); }
 		}
 
+
+		public int GetPot(int player, int index)
+		{
+			// check player input
+			if(player < 0 || player > players.Length)
+			{
+				throw new Exception("Table.GetPot Invalid player input!"); 
+			}
+
+
+			// check index input
+			if (index < 0 || index > potCount)
+			{
+				throw new Exception("Table.GetPot Invalid player index!");
+			}
+
+			return players[player].GetPot(index);
+		}
 
 
 		public int GetP1Home()
@@ -131,8 +158,18 @@ namespace Mancala.Code
 			if (currentPlayer != 0 && currentPlayer != 1 )
 			{ throw new Exception("Current player not found!"); }
 
+			if(currentPlayer == 0)
+			{
+				if(input == UI.Input.Command.left)
+				{ input = UI.Input.Command.right; }
+				else if (input == UI.Input.Command.right)
+				{ input = UI.Input.Command.left; }
+			}
+
 			players[currentPlayer].UpdateIndex(input);
 		}
+
+
 
 		private void RunCommand()
 		{
@@ -155,8 +192,7 @@ namespace Mancala.Code
 				// check if move ended on an empty pot.
 				if(moveValue == 0 && currentPlayer == cachedPlayer && players[currentPlayer].GetPot(index) == 1)
 				{
-					//StealOppositePot(currentPlayer, index);
-					
+					// Steal pot
 					int targetPlayer = currentPlayer + 1;
 					if(targetPlayer > players.Length-1)
 					{ targetPlayer = 0; }
@@ -201,5 +237,65 @@ namespace Mancala.Code
 			if (players[currentPlayer].GetPot(players[currentPlayer].GetIndex()) == 0 )
 			{ players[currentPlayer].UpdateIndex(UI.Input.Command.right); }
 		}
+
+		public (int[] P1 , int[] P2) GetMoveData()
+		{
+
+			int moveValue = players[currentPlayer].GetPot();
+
+			int[] p1 = new int[potCount + 1];
+			int[] p2 = new int[potCount + 1];
+
+
+			int[] line = new int[p1.Length + p2.Length];
+			
+			int move = players[currentPlayer].GetPot();
+			int index = players[currentPlayer].GetIndex();
+
+			if(currentPlayer == 1)
+			{
+				index += potCount;
+			}
+
+			while(move > 0)
+			{
+				index++;
+
+				// accout for not going in opponents home
+				if (index == p1.Length-1 && currentPlayer == 1)
+				{
+					index++;
+				}
+				if (index == line.Length-1 && currentPlayer == 0)
+				{
+					index++;
+				}
+
+				if(index > line.Length-1)
+				{ index = 0; }
+
+
+
+				if(move == 1)
+				{ line[index] = -1; }
+				else
+				{ line[index]++; }
+
+				move--;
+			}
+
+			for(int i = 0; i < line.Length; i++)
+			{
+				if(i < p1.Length)
+				{ p1[i] = line[i]; }
+				else
+				{ p2[i - p1.Length] = line[i]; }
+			}
+
+
+
+			return (p1,p2);
+		}
+
 	}
 }
