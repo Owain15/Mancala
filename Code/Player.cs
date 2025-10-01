@@ -130,11 +130,13 @@ namespace Mancala.Code
 			return result;
 		}
 
-		public int UpdatePotValues(int index, int moveValue, bool isCurrentPlayersTurn)
+		public (int moveValue , int index) UpdatePotValues(int index, int moveValue, bool isCurrentPlayersTurn)
 		{
-			for(int i = index; i < pots.Length; i ++ )
+			int c_index = index;
+
+			for(c_index = index; c_index < pots.Length; c_index++ )
 			{
-				pots[i]++;
+				pots[c_index]++;
 				moveValue--;
 				if(moveValue < 1)
 				{ break; }
@@ -146,7 +148,7 @@ namespace Mancala.Code
 				moveValue--;
 			}
 
-			return moveValue;
+			return (moveValue , c_index);
 		}
 
 		public bool CanMakeMove()
