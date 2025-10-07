@@ -1,4 +1,4 @@
-﻿using Mancala.UI;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,15 +66,15 @@ namespace Mancala.Code
 		public int GetIndex()
 		{ return index; }
 
-		public void UpdateIndex(Input.Command input)
+		public void UpdateIndex(Mancala.cl.UI.Command input)
 		{
 			// check input is valid
-			if( input != Input.Command.left && input != Input.Command.right )
+			if( input != Mancala.cl.UI.Command.left && input != Mancala.cl.UI.Command.right )
 			{ throw new Exception("Invalid player input!"); }
 
 			//set increment value
 			int increment = -1;
-			if(input == Input.Command.right)
+			if(input == Mancala.cl.UI.Command.right)
 			{ increment = 1; }
 
 			for(int i = 0; i < pots.Length; i++)

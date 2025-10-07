@@ -1,38 +1,32 @@
-﻿using System;
+﻿using Mancala.cl.UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mancala.UI
+namespace Mancala.Console._2.UI
 {
-	internal static class Input
+	internal class Input
 	{
-		public enum Command
-		{
-			left,
-			right,
-			enter,
-			escape
-		}
-		public static Command GetCommand()
+		public static Mancala.cl.UI.Command GetCommand()
 		{
 			bool validInputFound = false;
 
 			ConsoleKey key = ConsoleKey.None;
-			
-			while(!validInputFound)
+
+			while (!validInputFound)
 			{
-				key = Console.ReadKey(true).Key;
-			
-				if(
+				key = System.Console.ReadKey(true).Key;
+
+				if (
 				   key == ConsoleKey.LeftArrow
 				|| key == ConsoleKey.RightArrow
 				|| key == ConsoleKey.Enter
 				|| key == ConsoleKey.Escape
 				   )
 				{ validInputFound = true; }
-			
+
 			}
 
 			if (key == ConsoleKey.LeftArrow)
@@ -49,4 +43,5 @@ namespace Mancala.UI
 		}
 
 	}
+	
 }

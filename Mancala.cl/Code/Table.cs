@@ -6,10 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Mancala.Code;
+using Mancala.cl;
 
-namespace Mancala.Code
+namespace Mancala.cl.Code
 {
-	internal class Table
+	public class Table
 	{
 
 		//(Player P1, Player P2) players;
@@ -137,33 +138,33 @@ namespace Mancala.Code
 		public (int P1, int P2) GetIndexs()
 		{ return (players[0].GetIndex(), players[1].GetIndex()); }
 
-		public void UpdateGameState(Mancala.UI.Input.Command input)
+		public void UpdateGameState(Mancala.cl.UI.Command input)
 		{
 			switch(input)
 			{
-				case UI.Input.Command.left:
+				case Mancala.cl.UI.Command.left:
 					{ UpdatePlayerIndex(input); break; }
-				case UI.Input.Command.right:
+				case Mancala.cl.UI.Command.right:
 					{ UpdatePlayerIndex(input); break; }
-				case UI.Input.Command.enter:
+				case Mancala.cl.UI.Command.enter:
 					{ RunCommand(); break; }
-				case UI.Input.Command.escape:
+				case Mancala.cl.UI.Command.escape:
 					{ Environment.Exit(0); break; }
 			}
 
 		}
 
-		private void UpdatePlayerIndex(Mancala.UI.Input.Command input)
+		private void UpdatePlayerIndex(Mancala.cl.UI.Command input)
 		{
 			if (currentPlayer != 0 && currentPlayer != 1 )
 			{ throw new Exception("Current player not found!"); }
 
 			if(currentPlayer == 0)
 			{
-				if(input == UI.Input.Command.left)
-				{ input = UI.Input.Command.right; }
-				else if (input == UI.Input.Command.right)
-				{ input = UI.Input.Command.left; }
+				if(input == Mancala.cl.UI.Command.left)
+				{ input = Mancala.cl.UI.Command.right; }
+				else if (input == Mancala.cl.UI.Command.right)
+				{ input = Mancala.cl.UI.Command.left; }
 			}
 
 			players[currentPlayer].UpdateIndex(input);
@@ -247,7 +248,7 @@ namespace Mancala.Code
 		public void SetPlayerIndex()
 		{
 			if (players[currentPlayer].GetPot(players[currentPlayer].GetIndex()) == 0 )
-			{ players[currentPlayer].UpdateIndex(UI.Input.Command.right); }
+			{ players[currentPlayer].UpdateIndex(Mancala.cl.UI.Command.right); }
 		}
 
 		public (int[] P1 , int[] P2) GetMoveData()
