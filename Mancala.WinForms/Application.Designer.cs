@@ -2,6 +2,7 @@
 {
 	partial class Application
 	{
+	
 		/// <summary>
 		///  Required designer variable.
 		/// </summary>
@@ -38,6 +39,7 @@
 			Name = "Application";
 			Text = "Mancala";
 			Shown += Application_Shown;
+			KeyDown += Application_KeyDown;
 			ResumeLayout(false);
 		}
 

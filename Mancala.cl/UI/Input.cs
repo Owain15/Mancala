@@ -11,6 +11,8 @@ namespace Mancala.cl.UI
 		left,
 		right,
 		enter,
-		escape
+		escape,
+
+		InvalidInput = -1
 	}
 }

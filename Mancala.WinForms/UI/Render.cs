@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Mancala.WinForms.UI
 {
-	internal class Render : Mancala.cl.UI.DisplayInterface
-	{
-		public void RenderTable(Mancala.Code.Table table)
-		{ 
+	//internal class Render : Mancala.cl.UI.DisplayInterface
+	//{
+	//	public void RenderTable(Mancala.Code.Table table)
+	//	{ 
 		
 		
-		}
-	}
+	//	}
+	//}
 }

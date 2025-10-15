@@ -9,7 +9,8 @@ namespace Mancala.WinForms
 		static void Main()
 		{
 			ApplicationConfiguration.Initialize();
-			System.Windows.Forms.Application.Run(new Application());
+			//System.Windows.Forms.Application.Run(new Application()); 
+			System.Windows.Forms.Application.Run(new TestUi());
 		}
 	}
 }
