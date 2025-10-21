@@ -84,6 +84,11 @@ namespace Mancala.cl
 		public int GetHomeValue(int playerIndex)
 		{ return table.GetPlayerHome(playerIndex - 1); }
 
+		public (int[] p1, int[] p2)  GetMoveIndicatorValues()
+		{
+			return table.GetMoveData();
+		}
+
 	
 	}
 

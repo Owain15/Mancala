@@ -48,6 +48,7 @@
 			player2PotHome = new Label();
 			player1MoveIndicatorPotHome = new Label();
 			player2MoveIndicatorPotHome = new Label();
+			gameResultLabel = new Label();
 			player2TableLayout = new TableLayoutPanel();
 			player2Pot1 = new Label();
 			player2Pot2 = new Label();
@@ -81,6 +82,7 @@
 			// 
 			// appTableLayout
 			// 
+			appTableLayout.BackColor = SystemColors.ActiveCaption;
 			appTableLayout.ColumnCount = 3;
 			appTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
 			appTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
@@ -91,23 +93,24 @@
 			appTableLayout.Location = new Point(0, 0);
 			appTableLayout.Name = "appTableLayout";
 			appTableLayout.RowCount = 6;
-			appTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
 			appTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+			appTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
 			appTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-			appTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 300F));
-			appTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+			appTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 250F));
 			appTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-			appTableLayout.Size = new Size(800, 450);
+			appTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+			appTableLayout.Size = new Size(916, 302);
 			appTableLayout.TabIndex = 0;
 			// 
 			// headderTableLayout
 			// 
+			headderTableLayout.BackColor = SystemColors.Highlight;
 			headderTableLayout.ColumnCount = 9;
 			headderTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
 			headderTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 200F));
 			headderTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 50F));
 			headderTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 40F));
-			headderTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 40F));
+			headderTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 45F));
 			headderTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 40F));
 			headderTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 50F));
 			headderTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 200F));
@@ -118,20 +121,20 @@
 			headderTableLayout.Controls.Add(player1HedderIndicator, 3, 1);
 			headderTableLayout.Controls.Add(player2HedderIndicator, 5, 1);
 			headderTableLayout.Dock = DockStyle.Fill;
-			headderTableLayout.Location = new Point(23, 53);
+			headderTableLayout.Location = new Point(23, 4);
 			headderTableLayout.Name = "headderTableLayout";
 			headderTableLayout.RowCount = 3;
-			headderTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 66.6666641F));
+			headderTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
 			headderTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
-			headderTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-			headderTableLayout.Size = new Size(754, 44);
+			headderTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 0F));
+			headderTableLayout.Size = new Size(870, 44);
 			headderTableLayout.TabIndex = 0;
 			// 
 			// player1HeadderLabel
 			// 
 			player1HeadderLabel.AutoSize = true;
 			player1HeadderLabel.Dock = DockStyle.Fill;
-			player1HeadderLabel.Location = new Point(70, 2);
+			player1HeadderLabel.Location = new Point(125, 4);
 			player1HeadderLabel.Name = "player1HeadderLabel";
 			player1HeadderLabel.Size = new Size(194, 40);
 			player1HeadderLabel.TabIndex = 0;
@@ -142,7 +145,7 @@
 			// 
 			player2HedderLabel.AutoSize = true;
 			player2HedderLabel.Dock = DockStyle.Fill;
-			player2HedderLabel.Location = new Point(490, 2);
+			player2HedderLabel.Location = new Point(550, 4);
 			player2HedderLabel.Name = "player2HedderLabel";
 			player2HedderLabel.Size = new Size(194, 40);
 			player2HedderLabel.TabIndex = 1;
@@ -153,18 +156,18 @@
 			// 
 			playerHedderIndicatorLabel.AutoSize = true;
 			playerHedderIndicatorLabel.Dock = DockStyle.Fill;
-			playerHedderIndicatorLabel.Location = new Point(360, 2);
+			playerHedderIndicatorLabel.Location = new Point(415, 4);
 			playerHedderIndicatorLabel.Name = "playerHedderIndicatorLabel";
-			playerHedderIndicatorLabel.Size = new Size(34, 40);
+			playerHedderIndicatorLabel.Size = new Size(39, 40);
 			playerHedderIndicatorLabel.TabIndex = 2;
-			playerHedderIndicatorLabel.Text = "[ ]";
+			playerHedderIndicatorLabel.Text = "[⯀]";
 			playerHedderIndicatorLabel.TextAlign = ContentAlignment.MiddleCenter;
 			// 
 			// player1HedderIndicator
 			// 
 			player1HedderIndicator.AutoSize = true;
 			player1HedderIndicator.Dock = DockStyle.Fill;
-			player1HedderIndicator.Location = new Point(320, 2);
+			player1HedderIndicator.Location = new Point(375, 4);
 			player1HedderIndicator.Name = "player1HedderIndicator";
 			player1HedderIndicator.Size = new Size(34, 40);
 			player1HedderIndicator.TabIndex = 3;
@@ -175,7 +178,7 @@
 			// 
 			player2HedderIndicator.AutoSize = true;
 			player2HedderIndicator.Dock = DockStyle.Fill;
-			player2HedderIndicator.Location = new Point(400, 2);
+			player2HedderIndicator.Location = new Point(460, 4);
 			player2HedderIndicator.Name = "player2HedderIndicator";
 			player2HedderIndicator.Size = new Size(34, 40);
 			player2HedderIndicator.TabIndex = 4;
@@ -184,6 +187,7 @@
 			// 
 			// gameTableTableLayout
 			// 
+			gameTableTableLayout.BackColor = SystemColors.Highlight;
 			gameTableTableLayout.ColumnCount = 1;
 			gameTableTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
 			gameTableTableLayout.Controls.Add(player1TableLayout, 0, 1);
@@ -192,7 +196,7 @@
 			gameTableTableLayout.Controls.Add(player1MoveIndicatorTableLayout, 0, 2);
 			gameTableTableLayout.Controls.Add(tableLayoutPanel1, 0, 4);
 			gameTableTableLayout.Dock = DockStyle.Fill;
-			gameTableTableLayout.Location = new Point(23, 103);
+			gameTableTableLayout.Location = new Point(23, 54);
 			gameTableTableLayout.Name = "gameTableTableLayout";
 			gameTableTableLayout.RowCount = 7;
 			gameTableTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
@@ -202,7 +206,7 @@
 			gameTableTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
 			gameTableTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
 			gameTableTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-			gameTableTableLayout.Size = new Size(754, 294);
+			gameTableTableLayout.Size = new Size(870, 244);
 			gameTableTableLayout.TabIndex = 1;
 			// 
 			// player1TableLayout
@@ -232,15 +236,15 @@
 			player1TableLayout.Name = "player1TableLayout";
 			player1TableLayout.RowCount = 1;
 			player1TableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-			player1TableLayout.Size = new Size(748, 44);
+			player1TableLayout.Size = new Size(864, 44);
 			player1TableLayout.TabIndex = 0;
 			// 
 			// player1Pot6
 			// 
 			player1Pot6.AutoSize = true;
-			player1Pot6.BackColor = SystemColors.ControlDark;
+			player1Pot6.BackColor = SystemColors.ActiveCaption;
 			player1Pot6.Dock = DockStyle.Fill;
-			player1Pot6.Location = new Point(41, 0);
+			player1Pot6.Location = new Point(57, 0);
 			player1Pot6.Name = "player1Pot6";
 			player1Pot6.Size = new Size(74, 44);
 			player1Pot6.TabIndex = 0;
@@ -250,9 +254,9 @@
 			// player1Pot5
 			// 
 			player1Pot5.AutoSize = true;
-			player1Pot5.BackColor = SystemColors.ControlDark;
+			player1Pot5.BackColor = SystemColors.ActiveCaption;
 			player1Pot5.Dock = DockStyle.Fill;
-			player1Pot5.Location = new Point(159, 0);
+			player1Pot5.Location = new Point(191, 0);
 			player1Pot5.Name = "player1Pot5";
 			player1Pot5.Size = new Size(74, 44);
 			player1Pot5.TabIndex = 1;
@@ -262,9 +266,9 @@
 			// player1Pot4
 			// 
 			player1Pot4.AutoSize = true;
-			player1Pot4.BackColor = SystemColors.ControlDark;
+			player1Pot4.BackColor = SystemColors.ActiveCaption;
 			player1Pot4.Dock = DockStyle.Fill;
-			player1Pot4.Location = new Point(277, 0);
+			player1Pot4.Location = new Point(325, 0);
 			player1Pot4.Name = "player1Pot4";
 			player1Pot4.Size = new Size(74, 44);
 			player1Pot4.TabIndex = 2;
@@ -274,9 +278,9 @@
 			// player1Pot3
 			// 
 			player1Pot3.AutoSize = true;
-			player1Pot3.BackColor = SystemColors.ControlDark;
+			player1Pot3.BackColor = SystemColors.ActiveCaption;
 			player1Pot3.Dock = DockStyle.Fill;
-			player1Pot3.Location = new Point(395, 0);
+			player1Pot3.Location = new Point(459, 0);
 			player1Pot3.Name = "player1Pot3";
 			player1Pot3.Size = new Size(74, 44);
 			player1Pot3.TabIndex = 3;
@@ -286,9 +290,9 @@
 			// player1Pot2
 			// 
 			player1Pot2.AutoSize = true;
-			player1Pot2.BackColor = SystemColors.ControlDark;
+			player1Pot2.BackColor = SystemColors.ActiveCaption;
 			player1Pot2.Dock = DockStyle.Fill;
-			player1Pot2.Location = new Point(513, 0);
+			player1Pot2.Location = new Point(593, 0);
 			player1Pot2.Name = "player1Pot2";
 			player1Pot2.Size = new Size(74, 44);
 			player1Pot2.TabIndex = 4;
@@ -298,9 +302,9 @@
 			// player1Pot1
 			// 
 			player1Pot1.AutoSize = true;
-			player1Pot1.BackColor = SystemColors.ControlDark;
+			player1Pot1.BackColor = SystemColors.ActiveCaption;
 			player1Pot1.Dock = DockStyle.Fill;
-			player1Pot1.Location = new Point(631, 0);
+			player1Pot1.Location = new Point(727, 0);
 			player1Pot1.Name = "player1Pot1";
 			player1Pot1.Size = new Size(74, 44);
 			player1Pot1.TabIndex = 5;
@@ -309,18 +313,21 @@
 			// 
 			// homeTableLayout
 			// 
-			homeTableLayout.ColumnCount = 7;
+			homeTableLayout.ColumnCount = 9;
 			homeTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 0F));
 			homeTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 80F));
 			homeTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 30F));
-			homeTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+			homeTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+			homeTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 170F));
+			homeTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
 			homeTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 30F));
 			homeTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 80F));
 			homeTableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 0F));
 			homeTableLayout.Controls.Add(player1PotHome, 1, 1);
-			homeTableLayout.Controls.Add(player2PotHome, 5, 1);
+			homeTableLayout.Controls.Add(player2PotHome, 7, 1);
 			homeTableLayout.Controls.Add(player1MoveIndicatorPotHome, 2, 1);
-			homeTableLayout.Controls.Add(player2MoveIndicatorPotHome, 4, 1);
+			homeTableLayout.Controls.Add(player2MoveIndicatorPotHome, 6, 1);
+			homeTableLayout.Controls.Add(gameResultLabel, 4, 1);
 			homeTableLayout.Dock = DockStyle.Fill;
 			homeTableLayout.Location = new Point(3, 103);
 			homeTableLayout.Name = "homeTableLayout";
@@ -328,13 +335,13 @@
 			homeTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
 			homeTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
 			homeTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-			homeTableLayout.Size = new Size(748, 44);
+			homeTableLayout.Size = new Size(864, 44);
 			homeTableLayout.TabIndex = 1;
 			// 
 			// player1PotHome
 			// 
 			player1PotHome.AutoSize = true;
-			player1PotHome.BackColor = SystemColors.ControlDark;
+			player1PotHome.BackColor = SystemColors.ActiveCaption;
 			player1PotHome.Dock = DockStyle.Fill;
 			player1PotHome.Location = new Point(3, 2);
 			player1PotHome.Name = "player1PotHome";
@@ -346,9 +353,9 @@
 			// player2PotHome
 			// 
 			player2PotHome.AutoSize = true;
-			player2PotHome.BackColor = SystemColors.ControlDark;
+			player2PotHome.BackColor = SystemColors.ActiveCaption;
 			player2PotHome.Dock = DockStyle.Fill;
-			player2PotHome.Location = new Point(671, 2);
+			player2PotHome.Location = new Point(787, 2);
 			player2PotHome.Name = "player2PotHome";
 			player2PotHome.Size = new Size(74, 40);
 			player2PotHome.TabIndex = 1;
@@ -370,12 +377,22 @@
 			// 
 			player2MoveIndicatorPotHome.AutoSize = true;
 			player2MoveIndicatorPotHome.Dock = DockStyle.Fill;
-			player2MoveIndicatorPotHome.Location = new Point(641, 2);
+			player2MoveIndicatorPotHome.Location = new Point(757, 2);
 			player2MoveIndicatorPotHome.Name = "player2MoveIndicatorPotHome";
 			player2MoveIndicatorPotHome.Size = new Size(24, 40);
 			player2MoveIndicatorPotHome.TabIndex = 3;
 			player2MoveIndicatorPotHome.Text = ".";
 			player2MoveIndicatorPotHome.TextAlign = ContentAlignment.MiddleCenter;
+			// 
+			// gameResultLabel
+			// 
+			gameResultLabel.AutoSize = true;
+			gameResultLabel.Dock = DockStyle.Fill;
+			gameResultLabel.Location = new Point(350, 2);
+			gameResultLabel.Name = "gameResultLabel";
+			gameResultLabel.Size = new Size(164, 40);
+			gameResultLabel.TabIndex = 4;
+			gameResultLabel.TextAlign = ContentAlignment.MiddleCenter;
 			// 
 			// player2TableLayout
 			// 
@@ -406,15 +423,15 @@
 			player2TableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
 			player2TableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
 			player2TableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-			player2TableLayout.Size = new Size(748, 44);
+			player2TableLayout.Size = new Size(864, 44);
 			player2TableLayout.TabIndex = 2;
 			// 
 			// player2Pot1
 			// 
 			player2Pot1.AutoSize = true;
-			player2Pot1.BackColor = SystemColors.ControlDark;
+			player2Pot1.BackColor = SystemColors.ActiveCaption;
 			player2Pot1.Dock = DockStyle.Fill;
-			player2Pot1.Location = new Point(41, 2);
+			player2Pot1.Location = new Point(57, 2);
 			player2Pot1.Name = "player2Pot1";
 			player2Pot1.Size = new Size(74, 40);
 			player2Pot1.TabIndex = 0;
@@ -424,9 +441,9 @@
 			// player2Pot2
 			// 
 			player2Pot2.AutoSize = true;
-			player2Pot2.BackColor = SystemColors.ControlDark;
+			player2Pot2.BackColor = SystemColors.ActiveCaption;
 			player2Pot2.Dock = DockStyle.Fill;
-			player2Pot2.Location = new Point(159, 2);
+			player2Pot2.Location = new Point(191, 2);
 			player2Pot2.Name = "player2Pot2";
 			player2Pot2.Size = new Size(74, 40);
 			player2Pot2.TabIndex = 1;
@@ -436,9 +453,9 @@
 			// player2Pot3
 			// 
 			player2Pot3.AutoSize = true;
-			player2Pot3.BackColor = SystemColors.ControlDark;
+			player2Pot3.BackColor = SystemColors.ActiveCaption;
 			player2Pot3.Dock = DockStyle.Fill;
-			player2Pot3.Location = new Point(277, 2);
+			player2Pot3.Location = new Point(325, 2);
 			player2Pot3.Name = "player2Pot3";
 			player2Pot3.Size = new Size(74, 40);
 			player2Pot3.TabIndex = 2;
@@ -448,9 +465,9 @@
 			// player2Pot4
 			// 
 			player2Pot4.AutoSize = true;
-			player2Pot4.BackColor = SystemColors.ControlDark;
+			player2Pot4.BackColor = SystemColors.ActiveCaption;
 			player2Pot4.Dock = DockStyle.Fill;
-			player2Pot4.Location = new Point(395, 2);
+			player2Pot4.Location = new Point(459, 2);
 			player2Pot4.Name = "player2Pot4";
 			player2Pot4.Size = new Size(74, 40);
 			player2Pot4.TabIndex = 3;
@@ -460,9 +477,9 @@
 			// player2Pot5
 			// 
 			player2Pot5.AutoSize = true;
-			player2Pot5.BackColor = SystemColors.ControlDark;
+			player2Pot5.BackColor = SystemColors.ActiveCaption;
 			player2Pot5.Dock = DockStyle.Fill;
-			player2Pot5.Location = new Point(513, 2);
+			player2Pot5.Location = new Point(593, 2);
 			player2Pot5.Name = "player2Pot5";
 			player2Pot5.Size = new Size(74, 40);
 			player2Pot5.TabIndex = 4;
@@ -472,9 +489,9 @@
 			// player2Pot6
 			// 
 			player2Pot6.AutoSize = true;
-			player2Pot6.BackColor = SystemColors.ControlDark;
+			player2Pot6.BackColor = SystemColors.ActiveCaption;
 			player2Pot6.Dock = DockStyle.Fill;
-			player2Pot6.Location = new Point(631, 2);
+			player2Pot6.Location = new Point(727, 2);
 			player2Pot6.Name = "player2Pot6";
 			player2Pot6.Size = new Size(74, 40);
 			player2Pot6.TabIndex = 5;
@@ -510,14 +527,14 @@
 			player1MoveIndicatorTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
 			player1MoveIndicatorTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 25F));
 			player1MoveIndicatorTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-			player1MoveIndicatorTableLayout.Size = new Size(748, 24);
+			player1MoveIndicatorTableLayout.Size = new Size(864, 24);
 			player1MoveIndicatorTableLayout.TabIndex = 3;
 			// 
 			// player1MoveIndicatorPot6
 			// 
 			player1MoveIndicatorPot6.AutoSize = true;
 			player1MoveIndicatorPot6.Dock = DockStyle.Fill;
-			player1MoveIndicatorPot6.Location = new Point(41, 0);
+			player1MoveIndicatorPot6.Location = new Point(57, 0);
 			player1MoveIndicatorPot6.Name = "player1MoveIndicatorPot6";
 			player1MoveIndicatorPot6.Size = new Size(74, 25);
 			player1MoveIndicatorPot6.TabIndex = 0;
@@ -528,7 +545,7 @@
 			// 
 			player1MoveIndicatorPot5.AutoSize = true;
 			player1MoveIndicatorPot5.Dock = DockStyle.Fill;
-			player1MoveIndicatorPot5.Location = new Point(159, 0);
+			player1MoveIndicatorPot5.Location = new Point(191, 0);
 			player1MoveIndicatorPot5.Name = "player1MoveIndicatorPot5";
 			player1MoveIndicatorPot5.Size = new Size(74, 25);
 			player1MoveIndicatorPot5.TabIndex = 1;
@@ -539,7 +556,7 @@
 			// 
 			player1MoveIndicatorPot4.AutoSize = true;
 			player1MoveIndicatorPot4.Dock = DockStyle.Fill;
-			player1MoveIndicatorPot4.Location = new Point(277, 0);
+			player1MoveIndicatorPot4.Location = new Point(325, 0);
 			player1MoveIndicatorPot4.Name = "player1MoveIndicatorPot4";
 			player1MoveIndicatorPot4.Size = new Size(74, 25);
 			player1MoveIndicatorPot4.TabIndex = 2;
@@ -550,7 +567,7 @@
 			// 
 			player1MoveIndicatorPot3.AutoSize = true;
 			player1MoveIndicatorPot3.Dock = DockStyle.Fill;
-			player1MoveIndicatorPot3.Location = new Point(395, 0);
+			player1MoveIndicatorPot3.Location = new Point(459, 0);
 			player1MoveIndicatorPot3.Name = "player1MoveIndicatorPot3";
 			player1MoveIndicatorPot3.Size = new Size(74, 25);
 			player1MoveIndicatorPot3.TabIndex = 3;
@@ -561,7 +578,7 @@
 			// 
 			player1MoveIndicatorPot2.AutoSize = true;
 			player1MoveIndicatorPot2.Dock = DockStyle.Fill;
-			player1MoveIndicatorPot2.Location = new Point(513, 0);
+			player1MoveIndicatorPot2.Location = new Point(593, 0);
 			player1MoveIndicatorPot2.Name = "player1MoveIndicatorPot2";
 			player1MoveIndicatorPot2.Size = new Size(74, 25);
 			player1MoveIndicatorPot2.TabIndex = 4;
@@ -572,7 +589,7 @@
 			// 
 			player1MoveIndicatorPot1.AutoSize = true;
 			player1MoveIndicatorPot1.Dock = DockStyle.Fill;
-			player1MoveIndicatorPot1.Location = new Point(631, 0);
+			player1MoveIndicatorPot1.Location = new Point(727, 0);
 			player1MoveIndicatorPot1.Name = "player1MoveIndicatorPot1";
 			player1MoveIndicatorPot1.Size = new Size(74, 25);
 			player1MoveIndicatorPot1.TabIndex = 5;
@@ -608,14 +625,14 @@
 			tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
 			tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 25F));
 			tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-			tableLayoutPanel1.Size = new Size(748, 24);
+			tableLayoutPanel1.Size = new Size(864, 24);
 			tableLayoutPanel1.TabIndex = 4;
 			// 
 			// player2MoveIndicatorPot1
 			// 
 			player2MoveIndicatorPot1.AutoSize = true;
 			player2MoveIndicatorPot1.Dock = DockStyle.Fill;
-			player2MoveIndicatorPot1.Location = new Point(41, 0);
+			player2MoveIndicatorPot1.Location = new Point(57, 0);
 			player2MoveIndicatorPot1.Name = "player2MoveIndicatorPot1";
 			player2MoveIndicatorPot1.Size = new Size(74, 25);
 			player2MoveIndicatorPot1.TabIndex = 0;
@@ -626,7 +643,7 @@
 			// 
 			player2MoveIndicatorPot2.AutoSize = true;
 			player2MoveIndicatorPot2.Dock = DockStyle.Fill;
-			player2MoveIndicatorPot2.Location = new Point(159, 0);
+			player2MoveIndicatorPot2.Location = new Point(191, 0);
 			player2MoveIndicatorPot2.Name = "player2MoveIndicatorPot2";
 			player2MoveIndicatorPot2.Size = new Size(74, 25);
 			player2MoveIndicatorPot2.TabIndex = 1;
@@ -637,7 +654,7 @@
 			// 
 			player2MoveIndicatorPot3.AutoSize = true;
 			player2MoveIndicatorPot3.Dock = DockStyle.Fill;
-			player2MoveIndicatorPot3.Location = new Point(277, 0);
+			player2MoveIndicatorPot3.Location = new Point(325, 0);
 			player2MoveIndicatorPot3.Name = "player2MoveIndicatorPot3";
 			player2MoveIndicatorPot3.Size = new Size(74, 25);
 			player2MoveIndicatorPot3.TabIndex = 2;
@@ -648,7 +665,7 @@
 			// 
 			player2MoveIndicatorPot4.AutoSize = true;
 			player2MoveIndicatorPot4.Dock = DockStyle.Fill;
-			player2MoveIndicatorPot4.Location = new Point(395, 0);
+			player2MoveIndicatorPot4.Location = new Point(459, 0);
 			player2MoveIndicatorPot4.Name = "player2MoveIndicatorPot4";
 			player2MoveIndicatorPot4.Size = new Size(74, 25);
 			player2MoveIndicatorPot4.TabIndex = 3;
@@ -659,7 +676,7 @@
 			// 
 			player2MoveIndicatorPot5.AutoSize = true;
 			player2MoveIndicatorPot5.Dock = DockStyle.Fill;
-			player2MoveIndicatorPot5.Location = new Point(513, 0);
+			player2MoveIndicatorPot5.Location = new Point(593, 0);
 			player2MoveIndicatorPot5.Name = "player2MoveIndicatorPot5";
 			player2MoveIndicatorPot5.Size = new Size(74, 25);
 			player2MoveIndicatorPot5.TabIndex = 4;
@@ -670,7 +687,7 @@
 			// 
 			player2MoveIndicatorPot6.AutoSize = true;
 			player2MoveIndicatorPot6.Dock = DockStyle.Fill;
-			player2MoveIndicatorPot6.Location = new Point(631, 0);
+			player2MoveIndicatorPot6.Location = new Point(727, 0);
 			player2MoveIndicatorPot6.Name = "player2MoveIndicatorPot6";
 			player2MoveIndicatorPot6.Size = new Size(74, 25);
 			player2MoveIndicatorPot6.TabIndex = 5;
@@ -681,8 +698,9 @@
 			// 
 			AutoScaleDimensions = new SizeF(10F, 25F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(800, 450);
+			ClientSize = new Size(916, 302);
 			Controls.Add(appTableLayout);
+			MinimumSize = new Size(938, 358);
 			Name = "TestUi";
 			Text = "Mancala-TestUi";
 			KeyDown += TestUi_KeyDown;
@@ -746,5 +764,6 @@
 		private Label player2MoveIndicatorPot4;
 		private Label player2MoveIndicatorPot5;
 		private Label player2MoveIndicatorPot6;
+		private Label gameResultLabel;
 	}
 }
